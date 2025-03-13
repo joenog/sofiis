@@ -1,4 +1,3 @@
-//API
 import axios from "axios";
 
 const API_URL = 'https://brapi.dev/api/quote/';
