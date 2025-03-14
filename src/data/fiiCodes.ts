@@ -3,7 +3,11 @@
   "MXRF11", "SNFF11", "CPTS11", "SNAG11", "BTLG11", "TGAR11", "BNFS11",
   "HCTR11", "URPR11", "DEVA11", "KIVO11", "CACR11", "ALZC11", "ALZM11",
   "ALZR11", "SNEL11", "BLUR11", "HCRI11", "GAME11", "MFII11", "KNUQ11",
-  "KNHY11", "ALMI11", "BRCO11", "LVBI11"
-  ]
+  "KNHY11", "ALMI11", "BRCO11", "LVBI11", "FIXX11",
+  "RECR11", "XPLG11", "IRDM11", "RBFF11", "VILG11", "HSML11", "PVBI11",
+  "RCRB11", "GGRC11", "NEWL11", "RBRF11", "BRCR11", "BRCR11", "BRCR11",
 
-  export default fiiCodes
+];
+
+export default fiiCodes
+

@@ -11,8 +11,8 @@ export function Header() {
       </span>
       <div className='flex self-center !m-6 text-amber-50 gap-3'>
         <Link to={'/'}>Home</Link>
-        <Link to={'/about'}>About</Link>
         <Link to={'/news'}>News</Link>
+        <Link to={'/about'}>About</Link>
       </div>
     </header>
   )
