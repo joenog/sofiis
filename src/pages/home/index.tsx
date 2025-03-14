@@ -2,18 +2,21 @@ import { useEffect, useState } from "react"
 import fetchApi from '../../services/api/api.ts';
 import ApiProps from "../../types/ApiProps.tsx";
 import fiiCodes from "../../data/fiiCodes.ts";
+import Loading from "../../components/loading/index.tsx";
 
 export function Home() {
 
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [data, setData] = useState<ApiProps[]>([]);
   const [visibleCont, setVisiblecont] = useState(8);
   const [error, setError] = useState<string | null>(null);
 
+  //BUTTOM SHOW MORE
   const loadMore = ()=> {
     setVisiblecont(prev => prev + 5)
   }
 
+  //FETCH API
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
@@ -40,7 +43,7 @@ export function Home() {
   return(
     <>
       <main className='w-full flex justify-center'>
-      {loading ? <span className="flex justify-center items-center text-2xl text-amber-50"> Loading...</span> : (
+      {loading ? <Loading /> : (
 
         <section className='flex !my-8 !mx-2 h-16 flex-col w-full md:w-5/10 gap-2'>
           {
@@ -53,11 +56,13 @@ export function Home() {
                 </span>
                 <span> {item.results[0]?.symbol}</span>
                 <span>R$ {item.results[0]?.regularMarketPrice} </span>
-               { <span className={item.results[0]?.regularMarketChangePercent < 0 ? 'text-red-600' : 'text-green-600'}> {item.results[0]?.regularMarketChangePercent.toFixed(2)}% </span>}
+               { <span 
+                  className={item.results[0]?.regularMarketChangePercent < 0 ? 'text-red-600' : 'text-green-600'}> {item.results[0]?.regularMarketChangePercent.toFixed(2)}% 
+                </span>}
               </div>
             ))
           }
-          <span className="!pb-8 !m-10 flex justify-center items-center">
+          <span className="!pb-6 !m-6 flex justify-center items-center">
             <button 
               onClick={loadMore}
               className="!px-8 !py-2 text-amber-50 bg-stone-700 rounded-2xl" type="button">
