@@ -3,16 +3,18 @@ import fetchApi from '../../services/api/api.ts';
 import ApiProps from "../../types/ApiProps.tsx";
 import fiiCodes from "../../data/fiiCodes.ts";
 import Loading from "../../components/loading/index.tsx";
+import { FaStar } from "react-icons/fa";
+import { FloatingMenu } from "../../components/floatingMenu/index.tsx";
 
 export function Home() {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState<ApiProps[]>([]);
-  const [visibleCont, setVisiblecont] = useState(6);
+  const [visibleCont, setVisibleFiis] = useState(6);
   const [error, setError] = useState<string | null>(null);
 
   //BUTTOM SHOW MORE
   const loadMore = ()=> {
-    setVisiblecont(prev => prev + 5)
+    setVisibleFiis(prev => prev + 5)
   }
 
   //FETCH API
@@ -45,7 +47,7 @@ export function Home() {
         <section className="md:w-5/10">
           <h2>Favoritos</h2>
           <div className="!p-4 bg-gray-800 rounded-xl">
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptate quaerat, accusamus quam tenetur temporibus aspernatur. Perspiciatis inventore ipsam praesentium fugiat quod consequatur qui possimus. Ipsa animi cumque adipisci delectus ducimus?</p>
+            { <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Explicabo nihil corporis iste eos nobis harum tempore quo, quae animi minima, voluptas et iusto suscipit nulla esse maiores odit. Mollitia, temporibus.</p> }
           </div>
         </section>
 
@@ -65,6 +67,9 @@ export function Home() {
                { <span 
                   className={item.results[0]?.regularMarketChangePercent < 0 ? 'text-red-600' : 'text-green-600'}> {item.results[0]?.regularMarketChangePercent.toFixed(2)}% 
                 </span>}
+                <span className="flex self-center">
+                  <button className={' '}> <FaStar size={17}/> </button>
+                </span>
               </div>
             ))
           }
@@ -79,6 +84,7 @@ export function Home() {
         )
       }
       </main>
+      <FloatingMenu />
     </>
   )
 }
