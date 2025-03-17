@@ -1,3 +1,5 @@
+import { FloatingMenu } from "../../components/floatingMenu";
+
 export function News() {
   return(
     <>
@@ -8,6 +10,7 @@ export function News() {
         <section>
           <h2>News2</h2>
         </section>
+        <FloatingMenu />
       </main>
     </>
   )

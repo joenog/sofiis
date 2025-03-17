@@ -76,7 +76,7 @@ export function Home() {
           <span className="flex justify-end">
             <button 
               onClick={loadMore}
-              className="!px-4 !py-1 transition bg-gray-800 rounded-xl hover:bg-slate-600" type="button">
+              className="!px-4 !py-1 !mb-10 transition bg-gray-800 rounded-xl hover:bg-slate-600" type="button">
                 Mais
               </button>
           </span>
