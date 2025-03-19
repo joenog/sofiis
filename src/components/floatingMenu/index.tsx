@@ -4,15 +4,14 @@ import useIsMobile from "../../utils/isMobile/useIsMobile";
 
 export function FloatingMenu() {
 
-  if(window.innerWidth > 700) return useIsMobile;
+  const isMobile = useIsMobile();
+  if(!isMobile) return null;
 
   return (
 
     <div className="w-full fixed bottom-4 flex justify-center">
       <div
-        className="flex justify-center rounded-4xl gap-6 !py-2 !px-5"
-        style={{ backgroundColor: "rgba(42, 122, 162, 0.6)" }} // Valores corrigidos
-      >
+        className="flex justify-center bg-[rgba(31,41,55,0.8)] rounded-4xl gap-6 !py-3 !px-5">
         <Link to={"/"}>
           <FaHome size={38} color="#030712" />
         </Link>
@@ -20,7 +19,7 @@ export function FloatingMenu() {
           <FaNewspaper size={38} color="#030712" />
         </Link>
         <Link to={"/profile"}>
-          <FaUser size={34} color="#030712" />
+          <FaUser size={33} color="#030712" />
         </Link>
       </div>
     </div> 

@@ -4,7 +4,7 @@ import ApiProps from "../../types/ApiProps.tsx";
 import fiiCodes from "../../data/fiiCodes.ts";
 import Loading from "../../components/loading/index.tsx";
 import { FaStar } from "react-icons/fa";
-import { FloatingMenu } from "../../components/floatingMenu/index.tsx";
+import {FloatingMenu} from "../../components/floatingMenu/index.tsx";
 
 export function Home() {
   const [loading, setLoading] = useState(false);
