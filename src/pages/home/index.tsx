@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import fetchApi from '../../services/api/api.ts';
-import ApiProps from "../../types/ApiProps.tsx";
+import ApiProps from "../../types/api/ApiProps.ts";
 import fiiCodes from "../../data/fiiCodes.ts";
 import Loading from "../../components/loading/index.tsx";
 import { FaStar } from "react-icons/fa";
