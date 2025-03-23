@@ -11,15 +11,15 @@ export function FloatingMenu() {
 
     <div className="w-full fixed bottom-4 flex justify-center">
       <div
-        className="flex justify-center bg-[rgba(31,41,55,0.8)] rounded-4xl gap-6 !py-3 !px-5">
+        className="flex justify-center bg-[rgba(31,41,50,0.9)] rounded-4xl gap-6 !py-3 !px-5">
         <Link to={"/"}>
-          <FaHome size={38} color="#030712" />
+          <FaHome size={35} color="#030712" />
         </Link>
         <Link to={"/news"}>
-          <FaNewspaper size={38} color="#030712" />
+          <FaNewspaper size={35} color="#030712" />
         </Link>
         <Link to={"/profile"}>
-          <FaUser size={33} color="#030712" />
+          <FaUser size={30} color="#030712" />
         </Link>
       </div>
     </div> 

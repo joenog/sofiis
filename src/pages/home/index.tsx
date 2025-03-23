@@ -43,7 +43,7 @@ export function Home() {
 
   return(
     <>
-      <main className='flex flex-col items-center !px-4'>
+      <main className='flex flex-col items-center !px-3'>
         <section className="md:w-5/10">
           <h2>Favoritos</h2>
           <div className="!p-4 bg-gray-800 rounded-xl">

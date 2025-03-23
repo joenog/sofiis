@@ -30,8 +30,8 @@ export function News() {
 
   return (
     <>
-      <main className='flex flex-col items-center !px-4' >
-        <section className=" flex flex-col items-center  md:w-5/10">
+      <main className='flex flex-col items-center !px-3' >
+        <section className=" flex flex-col items-center md:w-5/10">
           {news.length > 0 ? (
             news.map((item, index) => (
               <div className="!my-2 !p-4 bg-gray-800 rounded-xl" key={index}>
