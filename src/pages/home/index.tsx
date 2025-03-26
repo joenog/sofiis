@@ -43,7 +43,9 @@ export function Home() {
 
   return(
     <>
-      <main className='flex flex-col items-center !px-3'>
+      {loading ? <Loading /> : ( 
+      <>
+      <main className='flex flex-col items-center !px-4'>
         <section className="md:w-5/10">
           <h2>Favoritos</h2>
           <div className="!p-4 bg-gray-800 rounded-xl">
@@ -51,7 +53,6 @@ export function Home() {
           </div>
         </section>
 
-      {loading ? <Loading /> : (
         <section className='flex !my-8 flex-col w-full md:w-5/10 gap-2'>
           <h2>Todos</h2>
           {
@@ -81,9 +82,10 @@ export function Home() {
               </button>
           </span>
         </section>
-        )
-      }
       </main>
+      </>
+        ) 
+      }
       <FloatingMenu />
     </>
   )

@@ -3,6 +3,6 @@ export interface NewsProps {
   content: string;
   description: string;
   url: string;
-  urlToImg: string;
+  urlToImage: string;
   publishedAt: string;
 }

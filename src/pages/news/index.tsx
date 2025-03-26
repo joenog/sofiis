@@ -30,20 +30,19 @@ export function News() {
 
   return (
     <>
-      <main className='flex flex-col items-center !px-3' >
+      <main className='flex flex-col items-center !px-4' >
         <section className=" flex flex-col items-center md:w-5/10">
           {news.length > 0 ? (
-            news.map((item, index) => (
+            news.map((news, index) => (
               <div className="!my-2 !p-4 bg-gray-800 rounded-xl" key={index}>
-                <h2>{item.content}</h2>
-                <p>{item.description}</p>
+                <h2>{news.title}</h2>
+                <p>{news.description}</p>
                 <div>
-                <img src={item.urlToImg} alt={'IMG'} />
-
+                  <img width={500} className="rounded-xl !my-4 h-48" src={news.urlToImage} alt={'image-news'} />
                 </div>
-                <p><strong>Publicado em:</strong> {new Date(item.publishedAt).toLocaleDateString()}</p>
-                <p className="!m-2">
-                  <Link to={item.url}> Ler mais...</Link>
+                <p><strong>Publicado em:</strong> {new Date(news.publishedAt).toLocaleDateString()}</p>
+                <p className="!m-2 font-semibold">
+                  <Link target="blanck" to={news.url}> Ler mais...</Link>
                 </p>
               </div>
             ))

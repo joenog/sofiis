@@ -6,7 +6,7 @@ export function Header() {
   const isMobile = useIsMobile();
 
   return (
-    <header className="flex justify-between w-full h-20 !p-4">
+    <header className="w-full fixed !p-2 top-0 flex justify-between z-10 bg-gray-950">
       <span className="flex self-center w-32">
         <Link to={'/'}>
           <img src={LogoSoffis} alt="logo" />
