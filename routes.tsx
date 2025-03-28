@@ -4,6 +4,7 @@ import { Profile } from './src/pages/profile'
 import { NotFound } from './src/pages/notfound'
 import { Layout } from "./src/components/layout";
 import { News } from "./src/pages/news";
+import { Market } from "./src/pages/market";
 
 const router = createBrowserRouter([
   {
@@ -16,6 +17,10 @@ const router = createBrowserRouter([
       {
         path: '/profile',
         element: <Profile />
+      },
+      {
+        path: '/market',
+        element: <Market />
       },
       {
         path: 'news',

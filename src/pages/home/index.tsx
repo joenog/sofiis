@@ -3,7 +3,6 @@ import fetchApi from '../../services/api/api.ts';
 import ApiProps from "../../types/api/ApiProps.ts";
 import fiiCodes from "../../data/fiiCodes.ts";
 import Loading from "../../components/loading/index.tsx";
-import { FaStar } from "react-icons/fa";
 import {FloatingMenu} from "../../components/floatingMenu/index.tsx";
 
 export function Home() {
@@ -46,14 +45,14 @@ export function Home() {
       {loading ? <Loading /> : ( 
       <>
       <main className='flex flex-col items-center !px-4'>
-        <section className="md:w-5/10">
+        <section className="md:w-6/10">
           <h2>Favoritos</h2>
           <div className="!p-4 bg-gray-800 rounded-xl">
             { <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Explicabo nihil corporis iste eos nobis harum tempore quo, quae animi minima, voluptas et iusto suscipit nulla esse maiores odit. Mollitia, temporibus.</p> }
           </div>
         </section>
 
-        <section className='flex !my-8 flex-col w-full md:w-5/10 gap-2'>
+        <section className='flex !my-8 flex-col w-full md:w-6/10 gap-2'>
           <h2>Todos</h2>
           {
             data.slice(0, visibleCont).map((item, index) => (
@@ -68,9 +67,6 @@ export function Home() {
                { <span 
                   className={item.results[0]?.regularMarketChangePercent < 0 ? 'text-red-600' : 'text-green-600'}> {item.results[0]?.regularMarketChangePercent.toFixed(2)}% 
                 </span>}
-                <span className="flex self-center">
-                  <button className={' '}> <FaStar size={17}/> </button>
-                </span>
               </div>
             ))
           }

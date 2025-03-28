@@ -5,7 +5,7 @@ export function Profile() {
     <>
     <main>
 
-      <h1>About</h1>
+      <h1>Profile</h1>
       <FloatingMenu />
     </main>
     </>
