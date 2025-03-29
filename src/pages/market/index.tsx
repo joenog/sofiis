@@ -9,6 +9,15 @@ import Loading from "../../components/loading";
 export function Market() {
 
   const [data, setData] = useState<ApiProps[]>([]);
+  const [favFiis, setFavFiis] = useState<string[]>([]);
+
+  function addFavFiis() {
+    data.map(fii => {
+      setFavFiis(fii.results[0]?.symbol);
+    })
+    console.log(favFiis)
+  }
+
 
   //fetch api
   useEffect(() => {
@@ -46,7 +55,7 @@ export function Market() {
               <span className={item?.results?.[0]?.regularMarketChange < 0 ? 'text-red-600' : 'text-green-600'}>
                 {item?.results?.[0]?.regularMarketChange?.toFixed(2) ?? 'N/A'}
               </span>
-                <span className="flex self-center">
+                <span onClick={addFavFiis} className="flex self-center">
                 <button className={''}> <FaStar className="text-gray-700" size={17}/> </button>
               </span>
             </div>

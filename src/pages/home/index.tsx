@@ -48,7 +48,7 @@ export function Home() {
         <section className="md:w-6/10">
           <h2>Wallet</h2>
           <div className="!p-4 bg-gray-800 rounded-xl">
-            { <p className="text-transparent">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Explicabo nihil corporis iste eos nobis harum tempore quo, quae animi minima, voluptas et iusto suscipit nulla esse maiores odit. Mollitia, temporibus.</p> }
+            { <p className="text-transparent">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Explicabo nihil corporis .</p> }
           </div>
         </section>
         <section className="md:w-6/10">

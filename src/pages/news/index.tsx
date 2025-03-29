@@ -36,18 +36,17 @@ export function News() {
             {news.length > 0 ? (
               news.map((news, index) => (
                 <div className="flex flex-col max-w-[440px] !p-4 bg-gray-900 rounded-xl" key={index}>
-                  <h2> {news.title} </h2>
-                  <p> {news.description} </p>
                   <div>
                     <img  
-                      className="rounded-xl !my-2 h-48 w-full object-cover" 
+                      className="rounded-xl !mb-2 h-48 w-full object-cover" 
                       src={news.urlToImage} 
                       alt="image-news" 
                     />
                   </div>
-                  <p><strong>Publicado em:</strong> {new Date(news.publishedAt).toLocaleDateString()}</p>
+                   <h2> {news.title} </h2>
+                  <p className="!ml-1" >Publicado: {new Date(news.publishedAt).toLocaleDateString()}</p>
                   <p className="self-end">
-                    <Link className="!p-2 !py-1 rounded-xl bg-gray-700" target="blanck" to={news.url}> Ler mais...</Link>
+                    <Link className="!px-3 !py-1 rounded-xl bg-gray-700" target="blanck" to={news.url}> ler mais</Link>
                   </p>
                 </div>
               ))
