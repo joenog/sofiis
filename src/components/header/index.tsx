@@ -18,11 +18,11 @@ export function Header() {
       <div className="flex items-center gap-6 !mr-4">
         {!isMobile && (
           <div className="flex items-center gap-4 text-amber-50">
-            <Link to={'/market'}>Mercado</Link>
+            <Link to={'/market'}>Market</Link>
             <Link to={'/news'}>News</Link>
           </div>
         )}
-        <Link className="border-1 p-2 rounded-xl bg-gray-700 flex items-center justify-center w-8 h-8" to={'/profile'}>
+        <Link className=" p-2 rounded-xl bg-gray-700 flex items-center justify-center w-8 h-8" to={'/profile'}>
           <FaUser size={17} />
         </Link>
       </div>

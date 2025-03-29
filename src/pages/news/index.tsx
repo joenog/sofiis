@@ -30,12 +30,12 @@ export function News() {
 
   return (
     <>
-      <main className="flex flex-col items-center w-full justify-center !px-4">
-        <h2 className="text-xl !ml-2 font-bold w-full max-w-[880px] mb-4">Notícias</h2>
-        <section className="flex flex-wrap gap-4 w-full max-w-[880px]">
+      <main className="flex flex-col items-center w-full !px-4">
+        <h2 className="!ml-2 w-full max-w-[900px]">News</h2>
+        <section className="flex justify-center flex-wrap gap-4 w-full max-w-[900px]">
             {news.length > 0 ? (
               news.map((news, index) => (
-                <div className="flex flex-col max-w-96 !p-4 bg-gray-900 rounded-xl" key={index}>
+                <div className="flex flex-col max-w-[440px] !p-4 bg-gray-900 rounded-xl" key={index}>
                   <h2> {news.title} </h2>
                   <p> {news.description} </p>
                   <div>

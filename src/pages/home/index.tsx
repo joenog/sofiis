@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import fetchApi from '../../services/api/api.ts';
+import fetchApi from '../../services/api/api';
 import ApiProps from "../../types/api/ApiProps.ts";
 import fiiCodes from "../../data/fiiCodes.ts";
 import Loading from "../../components/loading/index.tsx";
@@ -46,14 +46,20 @@ export function Home() {
       <>
       <main className='flex flex-col items-center !px-4'>
         <section className="md:w-6/10">
-          <h2>Favoritos</h2>
+          <h2>Wallet</h2>
           <div className="!p-4 bg-gray-800 rounded-xl">
-            { <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Explicabo nihil corporis iste eos nobis harum tempore quo, quae animi minima, voluptas et iusto suscipit nulla esse maiores odit. Mollitia, temporibus.</p> }
+            { <p className="text-transparent">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Explicabo nihil corporis iste eos nobis harum tempore quo, quae animi minima, voluptas et iusto suscipit nulla esse maiores odit. Mollitia, temporibus.</p> }
+          </div>
+        </section>
+        <section className="md:w-6/10">
+          <h2>Favorites</h2>
+          <div className="!p-4 bg-gray-800 rounded-xl">
+            { <p className="text-transparent">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Explicabo nihil corporis iste eos nobis harum tempore quo, quae animi minima, voluptas et iusto suscipit nulla esse maiores odit. Mollitia, temporibus.</p> }
           </div>
         </section>
 
         <section className='flex !my-8 flex-col w-full md:w-6/10 gap-2'>
-          <h2>Todos</h2>
+          <h2>All</h2>
           {
             data.slice(0, visibleCont).map((item, index) => (
               <div 
