@@ -9,14 +9,14 @@ import Loading from "../../components/loading";
 export function Market() {
 
   const [data, setData] = useState<ApiProps[]>([]);
-  const [favFiis, setFavFiis] = useState<string[]>([]);
+  //const [favFiis, setFavFiis] = useState<string[]>([]);
 
-  function addFavFiis() {
+  /*function addFavFiis() {
     data.map(fii => {
       setFavFiis(fii.results[0]?.symbol);
     })
     console.log(favFiis)
-  }
+  }*/
 
 
   //fetch api
@@ -43,7 +43,7 @@ export function Market() {
     <>
       <main className='flex flex-col items-center !px-4'>
         {data.length > 0 ? (<section className='flex flex-col w-full md:w-6/10 gap-2 !mb-26'>
-          <h2 className="!mt-1 !m-0 !ml-1">Market</h2>
+          <h2 className="!mt-3 !m-0 !ml-1">Market</h2>
           {data.map((item, index)=> (
             <div className="flex !p-4 justify-between rounded-2xl bg-gray-900" 
             key={item.results[0]?.symbol || `index-${index}`}>
@@ -55,7 +55,7 @@ export function Market() {
               <span className={item?.results?.[0]?.regularMarketChange < 0 ? 'text-red-600' : 'text-green-600'}>
                 {item?.results?.[0]?.regularMarketChange?.toFixed(2) ?? 'N/A'}
               </span>
-                <span onClick={addFavFiis} className="flex self-center">
+                <span className="flex self-center">
                 <button className={''}> <FaStar className="text-gray-700" size={17}/> </button>
               </span>
             </div>

@@ -10,6 +10,7 @@ body {
   background-color: #030712;
   color: #eeeeee;
   margin-top: 71px;
+  user-select: none;
 }
 
 h1 {
