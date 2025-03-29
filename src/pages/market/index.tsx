@@ -32,8 +32,8 @@ export function Market() {
   return(
     <>
         <main className='flex flex-col items-center !px-4'>
-          <h2 className="self-start">Market</h2>
-          <section className='flex !my-2 flex-col w-full md:w-6/10 gap-2'>
+          <section className='flex flex-col w-full md:w-6/10 gap-2 !mb-26'>
+            <h2>Market</h2>
             {data.map((item, index)=> (
               <div className="flex !p-4 justify-between rounded-2xl bg-gray-900" 
               key={item.results[0]?.symbol || `index-${index}`}>
@@ -42,8 +42,8 @@ export function Market() {
                 </span>
                 <span> {item.results[0]?.symbol} </span>
                 <span> {item.results[0]?.regularMarketPrice} </span>
-                <span className={item.results[0]?.regularMarketChange < 0 ? 'text-red-600' : 'text-green-600'}>
-                   {item.results[0]?.regularMarketChange.toFixed(2)} 
+                <span className={item?.results?.[0]?.regularMarketChange < 0 ? 'text-red-600' : 'text-green-600'}>
+                  {item?.results?.[0]?.regularMarketChange?.toFixed(2) ?? 'N/A'}
                 </span>
                  <span className="flex self-center">
                   <button className={''}> <FaStar className="text-gray-700" size={17}/> </button>

@@ -30,26 +30,30 @@ export function News() {
 
   return (
     <>
-      <main className="flex w-full justify-center px-4">
-       <section className="grid grid-cols-1 md:grid-cols-2 !mx-4 gap-4 w-full max-w-[880px]">
-          <h2>Notícias</h2>
-          {news.length > 0 ? (
-            news.map((news, index) => (
-              <div className=" !p-4 bg-gray-900 rounded-xl" key={index}>
-                <h2>{news.title}</h2>
-                <p>{news.description}</p>
-                <div>
-                  <img height={800} width={800} className="rounded-xl !my-2 h-48" src={news.urlToImage} alt={'image-news'} />
+      <main className="flex flex-col items-center w-full justify-center !px-4">
+        <h2 className="text-xl !ml-2 font-bold w-full max-w-[880px] mb-4">Notícias</h2>
+        <section className="flex flex-wrap gap-4 w-full max-w-[880px]">
+            {news.length > 0 ? (
+              news.map((news, index) => (
+                <div className="flex flex-col max-w-96 !p-4 bg-gray-900 rounded-xl" key={index}>
+                  <h2> {news.title} </h2>
+                  <p> {news.description} </p>
+                  <div>
+                    <img  
+                      className="rounded-xl !my-2 h-48 w-full object-cover" 
+                      src={news.urlToImage} 
+                      alt="image-news" 
+                    />
+                  </div>
+                  <p><strong>Publicado em:</strong> {new Date(news.publishedAt).toLocaleDateString()}</p>
+                  <p className="self-end">
+                    <Link className="!p-2 !py-1 rounded-xl bg-gray-700" target="blanck" to={news.url}> Ler mais...</Link>
+                  </p>
                 </div>
-                <p><strong>Publicado em:</strong> {new Date(news.publishedAt).toLocaleDateString()}</p>
-                <p className="!m-2 font-semibold">
-                  <Link className=" !px-4 !py-1 rounded-xl bg-gray-900" target="blanck" to={news.url}> Ler mais...</Link>
-                </p>
-              </div>
-            ))
-          ) : (
-            <Loading />
-          )}
+              ))
+            ) : (
+              <Loading />
+            )}
         </section>
 
         <FloatingMenu />

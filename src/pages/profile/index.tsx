@@ -5,7 +5,7 @@ export function Profile() {
     <>
     <main>
 
-      <h1>Profile</h1>
+      <h1 className="!m-6">soon...</h1>
       <FloatingMenu />
     </main>
     </>

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { FaBuilding, FaHome, FaNewspaper, FaUser } from "react-icons/fa";
+import { FaBuilding, FaHome, FaNewspaper } from "react-icons/fa";
 import useIsMobile from "../../utils/isMobile/useIsMobile";
 
 export function FloatingMenu() {
