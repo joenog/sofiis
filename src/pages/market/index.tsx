@@ -1,43 +1,19 @@
-import { useEffect, useState } from "react";
 import { FloatingMenu } from "../../components/floatingMenu";
-import ApiProps from "../../types/api/ApiProps";
-import fiiCodes from "../../data/fiiCodes";
-import fetchApi from "../../services/api/api";
 import { FaStar } from "react-icons/fa";
 import Loading from "../../components/loading";
+import { useAllFiis } from "../../services/api/useAllFiis";
 
 export function Market() {
 
-  const [data, setData] = useState<ApiProps[]>([]);
-  //const [favFiis, setFavFiis] = useState<string[]>([]);
+  const { data, error } = useAllFiis();
 
-  /*function addFavFiis() {
-    data.map(fii => {
-      setFavFiis(fii.results[0]?.symbol);
-    })
-    console.log(favFiis)
-  }*/
-
-
-  //fetch api
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const results = await Promise.all(
-          fiiCodes.map( async (code) => {
-            const result = await fetchApi(code);
-            return result;
-          })
-        );
-        setData(results)
-      } catch (error) {
-        console.log(error)
-      }
-    }
-
-    fetchData();
-  }, [])
-
+   if (error) {
+    return (
+      <div className="flex flex-col items-center justify-center h-screen text-red-500">
+        <p>Erro ao carregar os dados: {error.message}</p>
+      </div>
+    );
+  }
 
   return(
     <>
@@ -60,7 +36,7 @@ export function Market() {
               </span>
             </div>
           ))}
-        </section>) : <Loading />}
+        </section>) : <Loading /> }
       </main>
         
       <FloatingMenu />

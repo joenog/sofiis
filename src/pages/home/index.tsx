@@ -1,51 +1,27 @@
-import { useEffect, useState } from "react"
-import fetchApi from '../../services/api/api.ts';
-import ApiProps from "../../types/api/ApiProps.ts";
-import fiiCodes from "../../data/fiiCodes.ts";
+import { useState } from "react"
 import Loading from "../../components/loading/index.tsx";
 import {FloatingMenu} from "../../components/floatingMenu/index.tsx";
+import { useAllFiis } from "../../services/api/useAllFiis.ts";
 
 export function Home() {
+  const { data, error} = useAllFiis();
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [loading, setLoading] = useState(false);
-  const [data, setData] = useState<ApiProps[]>([]);
   const [visibleCont, setVisibleFiis] = useState(5);
-  const [error, setError] = useState<string | null>(null);
+
 
   //BUTTOM SHOW MORE
   const loadMore = ()=> {
     setVisibleFiis(prev => prev + 5)
   }
 
-  //FETCH API
-  useEffect(() => {
-    const cachedFiis = localStorage.getItem('fiisCache');
-
-    if (cachedFiis) {
-      setData(JSON.parse(cachedFiis));
-    } else {
-      const fetchData = async () => {
-        setLoading(true);
-        setError(null)
-        try {
-          const results = await Promise.all(
-            fiiCodes.map(async (code)=> {
-              const result = await fetchApi(code);
-              return result;
-            })
-          );
-          setData(results);
-          localStorage.setItem('fiisCache', JSON.stringify(results));
-        } catch (err) {
-          console.error(`Erro ao buscar dados: ${err}`);
-          setError(`Erro ao buscar dados: ${error}`);
-        } finally {
-          setLoading(false);
-        }
-      };
-      
-      fetchData();
-    }
-  }, [])
+ if (error) {
+    return (
+      <div className="flex flex-col items-center justify-center h-screen text-red-500">
+        <p>Erro ao carregar os dados: {error.message}</p>
+      </div>
+    );
+  }
 
   return(
     <>
