@@ -8,7 +8,7 @@ import {FloatingMenu} from "../../components/floatingMenu/index.tsx";
 export function Home() {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState<ApiProps[]>([]);
-  const [visibleCont, setVisibleFiis] = useState(6);
+  const [visibleCont, setVisibleFiis] = useState(5);
   const [error, setError] = useState<string | null>(null);
 
   //BUTTOM SHOW MORE
@@ -18,26 +18,33 @@ export function Home() {
 
   //FETCH API
   useEffect(() => {
-    const fetchData = async () => {
-      setLoading(true);
-      setError(null)
-      try {
-        const results = await Promise.all(
-          fiiCodes.map(async (code)=> {
-            const result = await fetchApi(code);
-            return result;
-          })
-        );
-        setData(results);
-      } catch (err) {
-        console.error(`Erro ao buscar dados: ${err}`);
-        setError(`Erro ao buscar dados: ${error}`);
-      } finally {
-        setLoading(false);
-      }
-    };
+    const cachedFiis = localStorage.getItem('fiisCache');
 
-    fetchData();
+    if (cachedFiis) {
+      setData(JSON.parse(cachedFiis));
+    } else {
+      const fetchData = async () => {
+        setLoading(true);
+        setError(null)
+        try {
+          const results = await Promise.all(
+            fiiCodes.map(async (code)=> {
+              const result = await fetchApi(code);
+              return result;
+            })
+          );
+          setData(results);
+          localStorage.setItem('fiisCache', JSON.stringify(results));
+        } catch (err) {
+          console.error(`Erro ao buscar dados: ${err}`);
+          setError(`Erro ao buscar dados: ${error}`);
+        } finally {
+          setLoading(false);
+        }
+      };
+      
+      fetchData();
+    }
   }, [])
 
   return(

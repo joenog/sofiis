@@ -10,22 +10,29 @@ export function News() {
   const [news, setNews] = useState<NewsProps[]>([]);
 
   useEffect(() => {
-    const apiNews = async () => {
-      try {
-        const response = await fetchApiNews();
-        const data = response?.data as ApiNewsProps; 
+    const cachedNews = localStorage.getItem('newsCache')
 
-        if (data?.articles) {
-          setNews(data.articles);
-        } else {
-          console.error("Formato inesperado da resposta", response);
+    if (cachedNews) {
+      setNews(JSON.parse(cachedNews));
+    } else {
+      const apiNews = async () => {
+        try {
+          const response = await fetchApiNews();
+          const data = response?.data as ApiNewsProps; 
+          
+          if (data?.articles) {
+            setNews(data.articles);
+            localStorage.setItem('newsCache', JSON.stringify(data.articles));
+          } else {
+            console.error("Formato inesperado da resposta", response);
+          }
+        } catch (err) {
+          console.error("Erro ao buscar notícias", err);
         }
-      } catch (err) {
-        console.error("Erro ao buscar notícias", err);
-      }
-    };
-
-    apiNews();
+      };
+      
+      apiNews();
+    }
   }, []);
 
   return (
