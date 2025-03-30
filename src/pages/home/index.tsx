@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import fetchApi from '../../services/api/api';
+import fetchApi from '../../services/api/api.js';
 import ApiProps from "../../types/api/ApiProps.ts";
 import fiiCodes from "../../data/fiiCodes.ts";
 import Loading from "../../components/loading/index.tsx";
