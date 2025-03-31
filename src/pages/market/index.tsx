@@ -5,7 +5,8 @@ import { useAllFiis } from "../../services/api/useAllFiis";
 
 export function Market() {
 
-  const { data, error } = useAllFiis();
+  const { data, error, loading } = useAllFiis();
+  //ARMAZENAS REQUISIÇÃO FIIS E MCACHE
 
    if (error) {
     return (
@@ -18,7 +19,7 @@ export function Market() {
   return(
     <>
       <main className='flex flex-col items-center !px-4'>
-        {data.length > 0 ? (<section className='flex flex-col w-full md:w-6/10 gap-2 !mb-26'>
+        {loading ? <Loading /> : (<section className='flex flex-col w-full md:w-6/10 gap-2 !mb-26'>
           <h2 className="!mt-3 !m-0 !ml-1">Market</h2>
           {data.map((item, index)=> (
             <div className="flex !p-4 justify-between rounded-2xl bg-gray-900" 
@@ -36,9 +37,9 @@ export function Market() {
               </span>
             </div>
           ))}
-        </section>) : <Loading /> }
+        </section>)}
       </main>
-        
+      
       <FloatingMenu />
     </>
     

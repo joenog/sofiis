@@ -6,27 +6,38 @@ import fetchApi from "./api";
 export function useAllFiis() {
 
   const [data, setData] = useState<ApiProps[]>([]);
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [error, setErros] = useState<Error | null>(null);
+  const [error, setError] = useState<Error | null>(null);
+  const [loading, setLoading] = useState(true);
 
-  //fetch api
+  //fetch api 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const results = await Promise.all(
-          fiiCodes.map( async (code) => {
-            const result = await fetchApi(code);
-            return result;
-          })
+    const cachedFiis = localStorage.getItem("FiisCache")
+
+    if (cachedFiis) {
+      const parsedFiis: ApiProps[] = JSON.parse(cachedFiis);
+      setData(parsedFiis);
+      setLoading(false);
+    } else {
+      const fetchData = async () => {
+        try {
+          const results = await Promise.all(
+            fiiCodes.map( async (code) => {
+              return await fetchApi(code);
+            })
         );
-        setData(results)
+        
+        setData(results);
+        localStorage.setItem('FiisCache', JSON.stringify(results))
       } catch (err) {
-        console.error(err as Error)
+        console.error(err);
+        setError(err as Error);
+      } finally {
+        setLoading(false);
       }
     }
-
     fetchData();
+  }
   }, [])
 
-  return {data, error};
+  return { data, error, loading };
 }

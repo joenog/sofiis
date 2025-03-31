@@ -9,9 +9,8 @@ import { Link } from "react-router-dom";
 export function News() {
   const [news, setNews] = useState<NewsProps[]>([]);
 
-
   useEffect(() => {
-    const cachedNews = localStorage.getItem('newsCache');
+    const cachedNews = localStorage.getItem('NewsCache');
 
     if (cachedNews) {
       setNews(JSON.parse(cachedNews));
@@ -23,7 +22,7 @@ export function News() {
           
           if (data?.articles) {
             setNews(data.articles);
-            localStorage.setItem('newsCache', JSON.stringify(data.articles));
+            localStorage.setItem('NewsCache', JSON.stringify(data.articles));
           } else {
             console.error("Formato inesperado da resposta", response);
           }
@@ -63,8 +62,8 @@ export function News() {
             )}
         </section>
 
-        <FloatingMenu />
       </main>
+      <FloatingMenu />
     </>
   );
 }
