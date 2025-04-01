@@ -2,11 +2,18 @@ import { FloatingMenu } from "../../components/floatingMenu";
 import { FaBuilding, FaStar } from "react-icons/fa";
 import Loading from "../../components/loading";
 import { useAllFiis } from "../../services/api/useAllFiis";
+import favFiis from "../home/favFiis";
 
 export function Market() {
 
   const { data, error, loading } = useAllFiis();
   
+  function addFavFiis(id: string) {
+    if (!favFiis.includes(id)) {
+      favFiis.push(id)
+    }
+  }
+
    if (error) {
     return (
       <div className="flex flex-col items-center justify-center h-96 text-gray-600">
