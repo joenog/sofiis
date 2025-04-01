@@ -1,17 +1,20 @@
 import { FloatingMenu } from "../../components/floatingMenu";
-import { FaStar } from "react-icons/fa";
+import { FaBuilding, FaStar } from "react-icons/fa";
 import Loading from "../../components/loading";
 import { useAllFiis } from "../../services/api/useAllFiis";
+//import favFiis from "../home/favFiis";
 
 export function Market() {
 
   const { data, error, loading } = useAllFiis();
-  //ARMAZENAS REQUISIÇÃO FIIS E MCACHE
+  
 
    if (error) {
     return (
-      <div className="flex flex-col items-center justify-center h-screen text-red-500">
-        <p>Erro ao carregar os dados: {error.message}</p>
+      <div className="flex flex-col items-center justify-center h-96 text-gray-600">
+        <FaBuilding size={80} />
+        <p className="!mt-10">Erro ao carregar os dados: {error.message}</p>
+        <p>Tente mais tarde...</p>
       </div>
     );
   }
@@ -33,7 +36,7 @@ export function Market() {
                 {item?.results?.[0]?.regularMarketChange?.toFixed(2) ?? 'N/A'}
               </span>
                 <span className="flex self-center">
-                <button className={''}> <FaStar className="text-gray-700" size={17}/> </button>
+                <button> <FaStar className="text-gray-700" size={18}/> </button>
               </span>
             </div>
           ))}

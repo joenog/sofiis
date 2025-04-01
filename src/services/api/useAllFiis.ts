@@ -21,9 +21,7 @@ export function useAllFiis() {
       const fetchData = async () => {
         try {
           const results = await Promise.all(
-            fiiCodes.map( async (code) => {
-              return await fetchApi(code);
-            })
+            fiiCodes.map(async (code) => await fetchApi(code)) 
         );
         
         setData(results);
@@ -34,9 +32,16 @@ export function useAllFiis() {
       } finally {
         setLoading(false);
       }
-    }
+    };
+
     fetchData();
   }
+  
+    const timeoutID = setTimeout(() => {
+      localStorage.removeItem("FiisCache")
+    }, 43200000);
+    
+    return () => clearTimeout(timeoutID);
   }, [])
 
   return { data, error, loading };

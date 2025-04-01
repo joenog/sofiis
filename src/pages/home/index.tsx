@@ -2,6 +2,7 @@ import { useState } from "react"
 import {FloatingMenu} from "../../components/floatingMenu/index.tsx";
 import { useAllFiis } from "../../services/api/useAllFiis.ts";
 import Loading from "../../components/loading/index.tsx";
+import { FaBuilding } from "react-icons/fa";
 
 export function Home() {
   const { data, error, loading } = useAllFiis();
@@ -12,10 +13,12 @@ export function Home() {
     setVisibleFiis(prev => prev + 5)
   }
 
- if (error) {
+   if (error) {
     return (
-      <div className="flex flex-col items-center justify-center h-screen text-red-500">
-        <p>Erro ao carregar os dados: {error.message}</p>
+      <div className="flex flex-col items-center justify-center h-96 text-gray-600">
+        <FaBuilding size={80} />
+        <p className="!mt-10">Erro ao carregar os dados: {error.message}</p>
+        <p>Tente mais tarde...</p>
       </div>
     );
   }
