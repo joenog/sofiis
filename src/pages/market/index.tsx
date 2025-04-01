@@ -2,13 +2,11 @@ import { FloatingMenu } from "../../components/floatingMenu";
 import { FaBuilding, FaStar } from "react-icons/fa";
 import Loading from "../../components/loading";
 import { useAllFiis } from "../../services/api/useAllFiis";
-//import favFiis from "../home/favFiis";
 
 export function Market() {
 
   const { data, error, loading } = useAllFiis();
   
-
    if (error) {
     return (
       <div className="flex flex-col items-center justify-center h-96 text-gray-600">
@@ -36,7 +34,7 @@ export function Market() {
                 {item?.results?.[0]?.regularMarketChange?.toFixed(2) ?? 'N/A'}
               </span>
                 <span className="flex self-center">
-                <button> <FaStar className="text-gray-700" size={18}/> </button>
+                <button onClick={ ()=> addFavFiis(item.results[0].symbol) }> <FaStar className="text-gray-700" size={18}/> </button>
               </span>
             </div>
           ))}

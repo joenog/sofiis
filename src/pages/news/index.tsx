@@ -6,6 +6,7 @@ import { NewsProps } from "../../types/apiNews/NewsProps";
 import Loading from "../../components/loading";
 import { Link } from "react-router-dom";
 
+
 export function News() {
   const [news, setNews] = useState<NewsProps[]>([]);
 
@@ -46,7 +47,7 @@ export function News() {
                   <div>
                     <img  
                       className="rounded-md h-48 w-full object-cover" 
-                      src={news.urlToImage || 'Imagem não definida.'} 
+                      src={news.urlToImage || 'Imagem não disponível.'} 
                       alt="image-news" 
                     />
                   </div>
