@@ -2,16 +2,20 @@ import { FloatingMenu } from "../../components/floatingMenu";
 import { FaBuilding, FaStar } from "react-icons/fa";
 import Loading from "../../components/loading";
 import { useAllFiis } from "../../services/api/useAllFiis";
-import favFiis from "../home/favFiis";
+import { useState } from "react";
+
 
 export function Market() {
-
-  const { data, error, loading } = useAllFiis();
   
-  function addFavFiis(id: string) {
-    if (!favFiis.includes(id)) {
-      favFiis.push(id)
-    }
+  const { data, error, loading } = useAllFiis();
+  const [favFiis, setFavFiis] = useState<string[]>([])
+  const iconFii = "./public/iconFii.svg"
+
+  function toggleFavFiis(id: string, ) {
+    setFavFiis((prev) => 
+      prev.includes(id) ? prev.filter((fii) => fii != id) : [...prev, id]
+    )
+    console.log(favFiis)
   }
 
    if (error) {
@@ -32,16 +36,24 @@ export function Market() {
           {data.map((item, index)=> (
             <div className="flex !p-4 justify-between rounded-2xl bg-gray-900" 
             key={item.results[0]?.symbol || `index-${index}`}>
-              <span className="w-6"> 
-                <img src={item.results[0]?.logourl} alt="" />
+              <span className="w-6">
+                <img 
+                  className="rounded-md"
+                  src={item.results[0]?.logourl ? item.results[0].logourl : iconFii} 
+                  alt="Logo do FII"
+                  onError={(e) => (e.currentTarget.src = iconFii)}
+                />
               </span>
+
               <span> {item.results[0]?.symbol} </span>
               <span> {item.results[0]?.regularMarketPrice} </span>
               <span className={item?.results?.[0]?.regularMarketChange < 0 ? 'text-red-600' : 'text-green-600'}>
                 {item?.results?.[0]?.regularMarketChange?.toFixed(2) ?? 'N/A'}
               </span>
-                <span className="flex self-center">
-                <button onClick={ ()=> addFavFiis(item.results[0].symbol) }> <FaStar className="text-gray-700" size={18}/> </button>
+                <span className='flex self-center'>
+                  <button onClick={ ()=> toggleFavFiis(item.results[0].symbol) }> 
+                    <FaStar className={'text-gray-700'} size={18}/>
+                  </button>
               </span>
             </div>
           ))}

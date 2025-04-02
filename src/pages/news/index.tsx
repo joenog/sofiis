@@ -34,6 +34,13 @@ export function News() {
       
       apiNews();
     }
+
+    const timeoutID = setTimeout(() => {
+      localStorage.removeItem("NewsCache")
+    }, 43200000);
+
+    return () => clearTimeout(timeoutID);
+    
   }, []);
 
   return (

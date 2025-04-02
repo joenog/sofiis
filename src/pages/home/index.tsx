@@ -27,6 +27,11 @@ export function Home() {
     <>
       {loading ? <Loading /> : ( 
         <main className='flex flex-col items-center !px-4'>
+          <section>
+            <div>
+              
+            </div>
+          </section>
           <section className="md:w-6/10">
             <h2>Wallet</h2>
             <div className="!p-4 bg-gray-800 rounded-xl">
