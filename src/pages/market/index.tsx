@@ -4,12 +4,10 @@ import Loading from "../../components/loading";
 import { useAllFiis } from "../../services/api/useAllFiis";
 import { useState } from "react";
 
-
 export function Market() {
-  
+
   const { data, error, loading } = useAllFiis();
   const [favFiis, setFavFiis] = useState<string[]>([])
-  const iconFii = "./public/iconFii.svg"
 
   function toggleFavFiis(id: string, ) {
     setFavFiis((prev) => 
@@ -36,15 +34,9 @@ export function Market() {
           {data.map((item, index)=> (
             <div className="flex !p-4 justify-between rounded-2xl bg-gray-900" 
             key={item.results[0]?.symbol || `index-${index}`}>
-              <span className="w-6">
-                <img 
-                  className="rounded-md"
-                  src={item.results[0]?.logourl ? item.results[0].logourl : iconFii} 
-                  alt="Logo do FII"
-                  onError={(e) => (e.currentTarget.src = iconFii)}
-                />
+              <span className="w-6"> 
+                <img className="rounded-md" src={item.results[0]?.logourl} alt=""/>
               </span>
-
               <span> {item.results[0]?.symbol} </span>
               <span> {item.results[0]?.regularMarketPrice} </span>
               <span className={item?.results?.[0]?.regularMarketChange < 0 ? 'text-red-600' : 'text-green-600'}>

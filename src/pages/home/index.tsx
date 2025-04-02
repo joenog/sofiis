@@ -2,7 +2,8 @@ import { useState } from "react"
 import {FloatingMenu} from "../../components/floatingMenu/index.tsx";
 import { useAllFiis } from "../../services/api/useAllFiis.ts";
 import Loading from "../../components/loading/index.tsx";
-import { FaBuilding } from "react-icons/fa";
+import { FaBuilding, FaPlus } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 export function Home() {
   const { data, error, loading } = useAllFiis();
@@ -35,25 +36,22 @@ export function Home() {
           <section className="md:w-6/10">
             <h2>Wallet</h2>
             <div className="!p-4 bg-gray-800 rounded-xl">
-              { <p className="text-transparent">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Explicabo nihil corporis .</p> }
-            </div>
-          </section>
-          <section className="md:w-6/10">
-            <h2>Favorites</h2>
-            <div className="!p-4 bg-gray-800 rounded-xl">
-              { <p className="text-transparent">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Explicabo nihil corporis iste eos nobis harum tempore quo, quae animi minima, voluptas et iusto suscipit nulla esse maiores odit. Mollitia, temporibus.</p> }
+              <Link to={'/profile'}>
+              { <p className="text-transparent">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Explicabo nihil corporis .</p> 
+              }
+              </Link>
             </div>
           </section>
 
           <section className='flex !my-8 flex-col w-full md:w-6/10 gap-2'>
-            <h2>All</h2>
+            <h2>Favorites</h2>
             {
               data.slice(0, visibleCont).map((item, index) => (
                 <div 
                 className="flex !p-4 justify-between rounded-2xl bg-gray-900" 
                 key={item.results[0]?.symbol || `index-${index}`}>
                   <span className="w-6">
-                    <img src={item.results[0]?.logourl} alt="" />
+                    <img className="rounded-md" src={item.results[0]?.logourl} alt="" />
                   </span>
                   <span> {item.results[0]?.symbol}</span>
                   <span>R$ {item.results[0]?.regularMarketPrice} </span>
@@ -66,10 +64,17 @@ export function Home() {
             <span className="flex justify-end">
               <button 
                 onClick={loadMore}
-                className="!px-4 !py-1 !mb-10 transition bg-gray-800 rounded-xl hover:bg-slate-600" type="button">
-                  More
+                className="!px-4 !py-2 transition bg-gray-800 rounded-xl hover:bg-slate-600" type="button">
+                  <FaPlus size={13} />
                 </button>
             </span>
+          </section>
+
+          <section className="md:w-6/10">
+            <h2>News</h2>
+            <div className="!p-4 bg-gray-800 rounded-xl">
+              { <p className="text-transparent">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Explicabo nihil corporis iste eos nobis harum tempore quo, quae animi minima, voluptas et iusto suscipit nulla esse maiores odit. Mollitia, temporibus.</p> }
+            </div>
           </section>
         </main>
       ) 
