@@ -34,9 +34,13 @@ export function Market() {
           {data.map((item, index)=> (
             <div className="flex !p-4 justify-between rounded-2xl bg-gray-900" 
             key={item.results[0]?.symbol || `index-${index}`}>
-              <span className="w-6"> 
-                <img className="rounded-md" src={item.results[0]?.logourl} alt=""/>
-              </span>
+            <span className="w-6"> 
+              <img 
+                className="rounded-md" 
+                src={item.results[0]?.logourl !== null ? item.results[0]?.logourl : 'https://assets.hgbrasil.com/finance/icons/real-estate.png'}  
+                alt="" 
+              />
+            </span>
               <span> {item.results[0]?.symbol} </span>
               <span> {item.results[0]?.regularMarketPrice} </span>
               <span className={item?.results?.[0]?.regularMarketChange < 0 ? 'text-red-600' : 'text-green-600'}>
