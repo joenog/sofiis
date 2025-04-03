@@ -1,23 +1,45 @@
-// public/service-worker.js
+// Exemplo básico de service-worker.js (você precisará adaptá-lo)
+const CACHE_NAME = 'sofiis-cache-v1';
+const urlsToCache = [
+  '/',
+  '/index.html',
+  '/manifest.json',
+  '/fav-sofiis.png',
+  '/icon-512x512.png'
+  // Adicione outros assets estáticos que você quer cachear
+];
 
-// Evento 'install' - pode ser usado para pré-cachear assets básicos
-self.addEventListener('install', (event) => {
-  console.log('Service Worker: Instalando...');
-  // Exemplo: Força a ativação imediata de um novo SW (se necessário)
-  // self.skipWaiting();
+self.addEventListener('install', event => {
+  event.waitUntil(
+    caches.open(CACHE_NAME)
+      .then(cache => {
+        console.log('Cache aberto!');
+        return cache.addAll(urlsToCache);
+      })
+  );
 });
 
-// Evento 'activate' - limpa caches antigos, etc.
-self.addEventListener('activate', (event) => {
-  console.log('Service Worker: Ativado.');
-  // Exemplo: Garante que o SW controle a página imediatamente
-  // event.waitUntil(clients.claim());
+self.addEventListener('fetch', event => {
+  event.respondWith(
+    caches.match(event.request)
+      .then(response => {
+        // Retorna a resposta do cache se existir, caso contrário, busca da rede.
+        return response || fetch(event.request);
+      })
+  );
 });
 
-// Evento 'fetch' - intercepta requisições de rede
-// Para um SW *mínimo* apenas para instalação, pode só repassar a requisição
-self.addEventListener('fetch', (event) => {
-  // console.log('Service Worker: Buscando', event.request.url);
-  // Simplesmente busca da rede (sem cache ainda)
-  event.respondWith(fetch(event.request));
+self.addEventListener('activate', event => {
+  const cacheWhitelist = [CACHE_NAME];
+  event.waitUntil(
+    caches.keys().then(cacheNames => {
+      return Promise.all(
+        cacheNames.map(cacheName => {
+          if (cacheWhitelist.indexOf(cacheName) === -1) {
+            return caches.delete(cacheName);
+          }
+        })
+      );
+    })
+  );
 });

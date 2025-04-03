@@ -5,7 +5,7 @@ import { useAllFiis } from "../../services/api/useAllFiis";
 import { useState } from "react";
 
 export function Market() {
-
+  
   const { data, error, loading } = useAllFiis();
   const [favFiis, setFavFiis] = useState<string[]>([])
 
