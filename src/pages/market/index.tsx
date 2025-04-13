@@ -32,24 +32,33 @@ export function Market() {
         {loading ? <Loading /> : (<section className='flex flex-col w-full md:w-6/10 gap-2 !mb-26'>
           <h2 className="!mt-3 !m-0 !ml-1">Market</h2>
           {data.map((item, index)=> (
-            <div className="flex !p-4 justify-between rounded-2xl bg-gray-900" 
+            <div className="flex !p-1 items-center justify-between rounded-2xl bg-gray-900" 
             key={item.results[0]?.symbol || `index-${index}`}>
-            <span className="w-6"> 
-              <img 
-                className="rounded-md" 
-                src={item.results[0]?.logourl !== null ? item.results[0]?.logourl : 'https://assets.hgbrasil.com/finance/icons/real-estate.png'}  
-                alt="" 
-              />
-            </span>
-              <span> {item.results[0]?.symbol} </span>
-              <span> {item.results[0]?.regularMarketPrice} </span>
-              <span className={item?.results?.[0]?.regularMarketChange < 0 ? 'text-red-600' : 'text-green-600'}>
-                {item?.results?.[0]?.regularMarketChange?.toFixed(2) ?? 'N/A'}
+              <span className="w-7"> 
+                <img 
+                  className="rounded-md !ml-2" 
+                  src={item.results[0]?.logourl ? item.results[0].logourl : 'https://assets.hgbrasil.com/finance/icons/real-estate.png'}
+                  alt={""}
+                
+                />
               </span>
-                <span className='flex self-center'>
-                  <button onClick={ ()=> toggleFavFiis(item.results[0].symbol) }> 
-                    <FaStar className={'text-gray-700'} size={18}/>
-                  </button>
+
+              <span className="font-bold">{
+                item.results[0]?.symbol} 
+              </span>
+
+              <span className="flex flex-col">
+                R$ {item.results[0]?.regularMarketPrice} 
+                
+                <span style={{fontSize: ".8rem"}} className={item?.results?.[0]?.regularMarketChange < 0 ? 'text-red-600' : 'text-green-600'}>
+                  {item?.results?.[0]?.regularMarketChange?.toFixed(2) ?? 'N/A'} %
+                </span>
+              </span>
+
+              <span className='flex self-center'>
+                <button className="!mr-2" onClick={ ()=> toggleFavFiis(item.results[0].symbol) }> 
+                  <FaStar className={'text-gray-700'} size={18}/>
+                </button>
               </span>
             </div>
           ))}
