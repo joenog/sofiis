@@ -1,16 +1,16 @@
 {
   "name": "soFIIs",
-  "short_name": "",
+  "short_name": "soFIIs",
   "icons": [
     {
       "src": "fav-sofiis.png",
       "type": "image/png",
-      "sizes": "512x512"
+      "sizes": "256x256"
     },
     {
       "src": "/icon-512x512.png",
       "type": "image/png",
-      "sizes": "512x512"
+      "sizes": "1024x1024"
     }
   ],
   "start_url": "/",
