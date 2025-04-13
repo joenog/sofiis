@@ -32,7 +32,7 @@ export function Market() {
         {loading ? <Loading /> : (<section className='flex flex-col w-full md:w-6/10 gap-2 !mb-26'>
           <h2 className="!mt-3 !m-0 !ml-1">Market</h2>
           {data.map((item, index)=> (
-            <div className="flex !p-1 items-center justify-between rounded-2xl bg-gray-900" 
+            <div style={{animation: "changeColor .8s"}} className="flex !p-1 items-center justify-between rounded-2xl bg-gray-900" 
             key={item.results[0]?.symbol || `index-${index}`}>
               <span className="w-7"> 
                 <img 
@@ -50,7 +50,12 @@ export function Market() {
               <span className="flex flex-col">
                 R$ {item.results[0]?.regularMarketPrice} 
                 
-                <span style={{fontSize: ".8rem"}} className={item?.results?.[0]?.regularMarketChange < 0 ? 'text-red-600' : 'text-green-600'}>
+                <span style={
+                  {
+                    fontSize: ".8rem",
+                    animation: 'changeColor 3s'
+                  }} 
+                  className={item?.results?.[0]?.regularMarketChange < 0 ? 'text-red-600'  : 'text-green-600'}>
                   {item?.results?.[0]?.regularMarketChange?.toFixed(2) ?? 'N/A'} %
                 </span>
               </span>

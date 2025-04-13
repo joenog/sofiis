@@ -27,7 +27,7 @@ export function Home() {
   return(
     <>
       {loading ? <Loading /> : ( 
-        <main className='flex flex-col items-center !px-4'>
+        <main style={{animation: "changeColor .8s"}} className='flex flex-col items-center !px-4'>
           <section>
             <div>
               

@@ -45,7 +45,7 @@ export function News() {
 
   return (
     <>
-      <main className="flex flex-col items-center w-full !px-4">
+      <main style={{animation: "changeColor .8s"}} className="flex flex-col items-center w-full !px-4">
         <h2 className="!ml-2 w-full max-w-[900px]">News</h2>
         <section className="flex justify-center flex-wrap gap-4 max-w-[900px]">
             {news.length > 0 ? (
