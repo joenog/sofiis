@@ -32,22 +32,23 @@ export function Market() {
         {loading ? <Loading /> : (<section className='flex flex-col w-full md:w-6/10 gap-2 !mb-26'>
           <h2 className="!mt-3 !m-0 !ml-1">Market</h2>
           {data.map((item, index)=> (
-            <div style={{animation: "changeColor .8s"}} className="flex !p-1 items-center justify-between rounded-2xl bg-gray-900" 
+            <div style={{animation: "changeColor .8s"}} className="flex !p-1.5 items-center justify-between rounded-2xl bg-gray-900" 
             key={item.results[0]?.symbol || `index-${index}`}>
               <span className="w-7"> 
                 <img 
                   className="rounded-md !ml-2" 
-                  src={item.results[0]?.logourl ? item.results[0].logourl : 'https://assets.hgbrasil.com/finance/icons/real-estate.png'}
-                  alt={""}
+                  src={item.results[0]?.logourl ? item.results[0].logourl : ""}
+                  alt={''}
                 
                 />
               </span>
 
-              <span className="font-bold">{
+              <span style={{ fontSize: ".8rem"}} className="flex flex-col">{
                 item.results[0]?.symbol} 
+                <span>{item.results[0]?.shortName}</span>
               </span>
 
-              <span className="flex flex-col">
+              <span style={{fontSize: ".9rem"}} className="flex flex-col">
                 R$ {item.results[0]?.regularMarketPrice} 
                 
                 <span style={

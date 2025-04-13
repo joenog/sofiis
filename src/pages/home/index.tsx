@@ -48,9 +48,9 @@ export function Home() {
               {
                 data.slice(0, visibleCont).map((item, index) => (
                   <div
-                  className="flex !p-4 justify-between rounded-2xl bg-gray-900"
+                  className="flex !p-3 justify-between rounded-2xl bg-gray-900"
                   key={item.results[0]?.symbol || `index-${index}`}>
-                    <span className="w-6">
+                    <span className="w-7">
                       <img className="rounded-md" src={item.results[0]?.logourl} alt="" />
                     </span>
                     <span> {item.results[0]?.symbol}</span>
