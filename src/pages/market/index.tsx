@@ -2,21 +2,26 @@ import { FloatingMenu } from "../../components/floatingMenu";
 import { FaBuilding, FaStar } from "react-icons/fa";
 import Loading from "../../components/loading";
 import { useAllFiis } from "../../services/api/useAllFiis";
-import { useState } from "react";
+//import fii11 from "../../assets/FI11.svg";
+import useFavFiis from "../../data/favFiis";
 
 export function Market() {
-  
   const { data, error, loading } = useAllFiis();
-  const [favFiis, setFavFiis] = useState<string[]>([])
+  const { favFiis, setFavFiis } = useFavFiis();
 
-  function toggleFavFiis(id: string, ) {
-    setFavFiis((prev) => 
-      prev.includes(id) ? prev.filter((fii) => fii != id) : [...prev, id]
-    )
-    console.log(favFiis)
+  function toggleFavFii(fiiToToggle: string) {
+  if (favFiis.includes(fiiToToggle)) {
+    // Remover o FII se já estiver nos favoritos
+    setFavFiis(favFiis.filter((fii) => fii !== fiiToToggle));
+    console.log(`${fiiToToggle} removido dos favoritos!`);
+  } else {
+    // Adicionar o FII se não estiver nos favoritos
+    setFavFiis([...favFiis, fiiToToggle]);
+    console.log(`${fiiToToggle} adicionado aos favoritos!`);
   }
+}
 
-   if (error) {
+  if (error) {
     return (
       <div className="flex flex-col items-center justify-center h-96 text-gray-600">
         <FaBuilding size={80} />
@@ -26,53 +31,74 @@ export function Market() {
     );
   }
 
-  return(
+  return (
     <>
-      <main className='flex flex-col items-center !px-4'>
-        {loading ? <Loading /> : (<section className='flex flex-col w-full md:w-6/10 gap-2 !mb-26'>
-          <h2 className="!mt-3 !m-0 !ml-1">Market</h2>
-          {data.map((item, index)=> (
-            <div style={{animation: "changeColor .8s"}} className="flex !p-1.5 items-center justify-between rounded-2xl bg-gray-900" 
-            key={item.results[0]?.symbol || `index-${index}`}>
-              <span className="w-7"> 
-                <img 
-                  className="rounded-md !ml-2" 
-                  src={item.results[0]?.logourl ? item.results[0].logourl : ""}
-                  alt={''}
-                
-                />
-              </span>
+      <main className="flex flex-col items-center !px-4">
+        {loading ? (
+          <Loading />
+        ) : (
+          <section className="flex flex-col w-full md:w-6/10 gap-2 !mb-26">
+            <h2 className="!mt-3 !m-0 !ml-1">Market</h2>
+            {data?.map((item, index) => {
+              const fiiSymbol = item?.results?.[0]?.symbol;
+              const isFavorite = favFiis.includes(fiiSymbol);
 
-              <span style={{ fontSize: ".8rem"}} className="flex flex-col">{
-                item.results[0]?.symbol} 
-                <span>{item.results[0]?.shortName}</span>
-              </span>
+              return (
+                <div
+                  style={{ animation: "changeColor .8s" }}
+                  className="flex !p-1.5 items-center justify-between rounded-2xl bg-gray-900"
+                  key={fiiSymbol || `index-${index}`}
+                >
+                  <span className="w-7">
+                    <img
+                      className="rounded-md !ml-2"
+                      src={item?.results?.[0]?.logourl || fii11}
+                      alt={item?.results?.[0]?.shortName || "Logo do FII"}
+                      onError={(e) => {
+                        (e.target as HTMLImageElement).src = fii11;
+                      }}
+                    />
+                  </span>
 
-              <span style={{fontSize: ".9rem"}} className="flex flex-col">
-                R$ {item.results[0]?.regularMarketPrice} 
-                
-                <span style={
-                  {
-                    fontSize: ".8rem",
-                    animation: 'changeColor 3s'
-                  }} 
-                  className={item?.results?.[0]?.regularMarketChange < 0 ? 'text-red-600'  : 'text-green-600'}>
-                  {item?.results?.[0]?.regularMarketChange?.toFixed(2) ?? 'N/A'} %
-                </span>
-              </span>
+                  <span style={{ fontSize: ".8rem" }} className="flex flex-col">
+                    {fiiSymbol}
+                    <span>{item?.results?.[0]?.shortName}</span>
+                  </span>
 
-              <span className='flex self-center'>
-                <button className="!mr-2" onClick={ ()=> toggleFavFiis(item.results[0].symbol) }> 
-                  <FaStar className={'text-gray-700'} size={18}/>
-                </button>
-              </span>
-            </div>
-          ))}
-        </section>)}
+                  <span style={{ fontSize: ".9rem" }} className="flex flex-col">
+                    R$ {item?.results?.[0]?.regularMarketPrice?.toFixed(2) ?? "N/A"}
+                    <span
+                      style={{
+                        fontSize: ".8rem",
+                        animation: "changeColor 3s",
+                      }}
+                      className={
+                        item?.results?.[0]?.regularMarketChange < 0
+                          ? "text-red-600"
+                          : "text-green-600"
+                      }
+                    >
+                      {item?.results?.[0]?.regularMarketChange?.toFixed(2) ?? "N/A"} %
+                    </span>
+                  </span>
+
+                  <span
+                    onClick={() => toggleFavFii(fiiSymbol)}
+                    className="flex self-center cursor-pointer"
+                    aria-label={isFavorite ? "Remover dos favoritos" : "Adicionar aos favoritos"}
+                    title={isFavorite ? "Remover dos favoritos" : "Adicionar aos favoritos"}
+                  >
+                    <button className="!mr-2 focus:outline-none">
+                      <FaStar className={isFavorite ? "text-yellow-300" : "text-gray-700"} size={18} />
+                    </button>
+                  </span>
+                </div>
+              );
+            })}
+          </section>
+        )}
       </main>
-      
       <FloatingMenu />
     </>
-    
-  )
+  );
 }
