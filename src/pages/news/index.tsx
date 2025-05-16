@@ -204,7 +204,8 @@ export function News() {
               </div>
           </div>
         </section>
-          
+        
+        {/*
         <section className="flex justify-center flex-wrap gap-4 max-w-[900px]">
           {news.length > 0 ? (
             news.map((news, index) => (
@@ -250,6 +251,8 @@ export function News() {
             <Loading />
           )}
         </section>  
+        */} 
+
       </main>
       <FloatingMenu />
     </>
