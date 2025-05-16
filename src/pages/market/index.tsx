@@ -2,7 +2,7 @@ import { FloatingMenu } from "../../components/floatingMenu";
 import { FaBuilding, FaStar } from "react-icons/fa";
 import Loading from "../../components/loading";
 import { useAllFiis } from "../../services/api/useAllFiis";
-//import fii11 from "../../assets/FI11.svg";
+import fii11 from "../../assets/fii11.svg";
 import useFavFiis from "../../data/favFiis";
 
 export function Market() {
