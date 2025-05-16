@@ -3,7 +3,7 @@ import { FloatingMenu } from "../../components/floatingMenu";
 import { fetchApiNews } from "../../services/api/apiNews";
 import { ApiNewsProps } from "../../types/apiNews/ApiNewsProps";
 import { NewsProps } from "../../types/apiNews/NewsProps";
-import Loading from "../../components/loading";
+//import Loading from "../../components/loading";
 import { Link } from "react-router-dom";
 
 export function News() {
@@ -204,6 +204,7 @@ export function News() {
               </div>
           </div>
         </section>
+
         <section className="flex justify-center flex-wrap gap-4 max-w-[900px]">
           {news.length > 0 ? (
             news.map((news, index) => (
@@ -246,7 +247,7 @@ export function News() {
               </div>
             ))
           ) : (
-            <Loading />
+            <> ... </>
           )}
         </section>  
         */
