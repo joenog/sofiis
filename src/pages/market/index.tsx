@@ -1,12 +1,11 @@
 import { FloatingMenu } from "../../components/floatingMenu";
 import { FaBuilding, FaStar } from "react-icons/fa";
-import Loading from "../../components/loading";
 import { useAllFiis } from "../../services/api/useAllFiis";
 import fii11 from "../../assets/fii11.svg";
 import useFavFiis from "../../data/favFiis";
 
 export function Market() {
-  const { data, error, loading } = useAllFiis();
+  const { data, error } = useAllFiis();
   const { favFiis, setFavFiis } = useFavFiis();
 
   function toggleFavFii(fiiToToggle: string) {
@@ -34,9 +33,6 @@ export function Market() {
   return (
     <>
       <main className="flex flex-col items-center !px-4">
-        {loading ? (
-          <Loading />
-        ) : (
           <section className="flex flex-col w-full md:w-6/10 gap-2 !mb-26">
             <h2 className="!mt-3 !m-0 !ml-1">Market</h2>
             {data?.map((item, index) => {
@@ -96,7 +92,6 @@ export function Market() {
               );
             })}
           </section>
-        )}
       </main>
       <FloatingMenu />
     </>
