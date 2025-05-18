@@ -33,19 +33,17 @@ export function Home() {
           style={{ animation: "changeColor .8s" }}
           className="flex flex-col items-center !px-4"
         >
-
           <section className="md:w-6/10">
             <h2>Wallet</h2>
             <div className="!p-4 bg-gray-800 rounded-xl">
               <Link to={"/profile"}>
                 {
                   <>
-                  <p className="text-gray-400">SOON...</p>
-                  <p className="text-transparent">
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                    Explicabo nihil corporis , Lorem ipsum dolor sit, amet
-                     .
-                  </p>
+                    <p className="text-gray-400">SOON...</p>
+                    <p className="text-transparent">
+                      Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                      Explicabo nihil corporis , Lorem ipsum dolor sit, amet .
+                    </p>
                   </>
                 }
               </Link>

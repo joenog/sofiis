@@ -10,16 +10,16 @@ export function Market() {
   const { favFiis, setFavFiis } = useFavFiis();
 
   function toggleFavFii(fiiToToggle: string) {
-  if (favFiis.includes(fiiToToggle)) {
-    // Remover o FII se já estiver nos favoritos
-    setFavFiis(favFiis.filter((fii) => fii !== fiiToToggle));
-    console.log(`${fiiToToggle} removido dos favoritos!`);
-  } else {
-    // Adicionar o FII se não estiver nos favoritos
-    setFavFiis([...favFiis, fiiToToggle]);
-    console.log(`${fiiToToggle} adicionado aos favoritos!`);
+    if (favFiis.includes(fiiToToggle)) {
+      // Remover o FII se já estiver nos favoritos
+      setFavFiis(favFiis.filter((fii) => fii !== fiiToToggle));
+      console.log(`${fiiToToggle} removido dos favoritos!`);
+    } else {
+      // Adicionar o FII se não estiver nos favoritos
+      setFavFiis([...favFiis, fiiToToggle]);
+      console.log(`${fiiToToggle} adicionado aos favoritos!`);
+    }
   }
-}
 
   if (error) {
     return (
@@ -66,7 +66,9 @@ export function Market() {
                   </span>
 
                   <span style={{ fontSize: ".9rem" }} className="flex flex-col">
-                    R$ {item?.results?.[0]?.regularMarketPrice?.toFixed(2) ?? "N/A"}
+                    R${" "}
+                    {item?.results?.[0]?.regularMarketPrice?.toFixed(2) ??
+                      "N/A"}
                     <span
                       style={{
                         fontSize: ".8rem",
@@ -78,18 +80,33 @@ export function Market() {
                           : "text-green-600"
                       }
                     >
-                      {item?.results?.[0]?.regularMarketChange?.toFixed(2) ?? "N/A"} %
+                      {item?.results?.[0]?.regularMarketChange?.toFixed(2) ??
+                        "N/A"}{" "}
+                      %
                     </span>
                   </span>
 
                   <span
                     onClick={() => toggleFavFii(fiiSymbol)}
                     className="flex self-center cursor-pointer"
-                    aria-label={isFavorite ? "Remover dos favoritos" : "Adicionar aos favoritos"}
-                    title={isFavorite ? "Remover dos favoritos" : "Adicionar aos favoritos"}
+                    aria-label={
+                      isFavorite
+                        ? "Remover dos favoritos"
+                        : "Adicionar aos favoritos"
+                    }
+                    title={
+                      isFavorite
+                        ? "Remover dos favoritos"
+                        : "Adicionar aos favoritos"
+                    }
                   >
                     <button className="!mr-2 focus:outline-none">
-                      <FaStar className={isFavorite ? "text-yellow-300" : "text-gray-700"} size={18} />
+                      <FaStar
+                        className={
+                          isFavorite ? "text-yellow-300" : "text-gray-700"
+                        }
+                        size={18}
+                      />
                     </button>
                   </span>
                 </div>

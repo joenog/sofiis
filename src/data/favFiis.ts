@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 
 const useFavFiis = () => {
-
   const storedFavFiis = localStorage.getItem("favFiis");
   const initialFavFiis = storedFavFiis ? JSON.parse(storedFavFiis) : [];
 
