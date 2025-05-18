@@ -20,6 +20,7 @@ export function Header() {
           <div className="flex items-center gap-4 text-amber-50">
             <Link to={"/market"}>Market</Link>
             <Link to={"/news"}>News</Link>
+            <Link to={"/learn"}>Learn</Link>
           </div>
         )}
         <Link
@@ -28,6 +29,7 @@ export function Header() {
         >
           <FaUser size={17} />
         </Link>
+    
       </div>
     </header>
   );

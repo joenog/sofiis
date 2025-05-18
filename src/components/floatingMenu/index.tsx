@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { FaBuilding, FaHome, FaNewspaper } from "react-icons/fa";
+import { FaBook, FaBuilding, FaHome, FaNewspaper } from "react-icons/fa";
 import useIsMobile from "../../utils/isMobile/useIsMobile";
 
 export function FloatingMenu() {
@@ -14,6 +14,9 @@ export function FloatingMenu() {
         </Link>
         <Link to={"/market"}>
           <FaBuilding size={33} color="#030712" />
+        </Link>
+         <Link to={"/learn"}>
+          <FaBook size={35} color="#030712" />
         </Link>
         <Link to={"/news"}>
           <FaNewspaper size={35} color="#030712" />

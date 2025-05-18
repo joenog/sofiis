@@ -5,6 +5,7 @@ import { NotFound } from "./src/pages/notfound";
 import { Layout } from "./src/components/layout";
 import { News } from "./src/pages/news";
 import { Market } from "./src/pages/market";
+import { Learn } from "./src/pages/learn";
 
 const router = createBrowserRouter([
   {
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
       {
         path: "news",
         element: <News />,
+      },
+      {
+        path: "learn",
+        element: <Learn />
       },
       {
         path: "*",
